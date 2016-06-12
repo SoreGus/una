@@ -1,0 +1,31 @@
+{
+    "name": "Una-Inopus",
+    "version": "2.0.0",
+    "description": "Una APP - Inopus",
+    "keywords": [
+    "Una",
+    "Inopus"
+  ],
+    "author": {
+        "name": "Inopus",
+        "email": "contato@inopus.com.br",
+        "url": "http://inopus.com.br/"
+    },
+    "homepage": "http://inopus.com.br/",
+    "engines": {
+        "node": "*",
+        "npm": "*"
+    },
+    "dependencies": {
+        "body-parser": "*",
+        "express": "^4.13.4",
+        "node-uuid": "*",
+        "nodemailer": "*",
+        "simplify-commerce": "*",
+        "socket.io": "*"
+    },
+    "devDependencies": {},
+    "bundleDependencies": [],
+    "private": true,
+    "main": "server.js"
+}

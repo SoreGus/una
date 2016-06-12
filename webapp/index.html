@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Obra</title>
+    <meta charset="utf-8">
+    <meta name="author" title="Inopus">
+    <link rel="author" href="http://una.inopus.com.br" title="una">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="apple-touch-icon" href="images/logo/192.png">
+    <link rel="icon" href="images/logo/512.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link href="css/Carregando.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/Alerta.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link type="text/css" rel="stylesheet" href="css/frameworks/timeline.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="css/frameworks/materialize.min.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="css/frameworks/materialize-tags.min.css" media="all" />
+    <link href="css/materialdesignicons/materialdesignicons.css" rel="stylesheet" type="text/css" media="all">
+    <script src="js/Alerta.js"></script>
+    <script src="js/Pagina.js"></script>
+    <script src="js/Carregando.js"></script>
+    <script src="js/HttpReq.js"></script>
+    <script src="js/funcionalidadesDisponiveis.js"></script>
+
+    <script src="js/model/PerfilPrestadorServico.js"></script>
+    <script src="js/model/PerfilSolicitante.js"></script>
+    <script src="js/model/Usuario.js"></script>
+    <script src="js/model/Token.js"></script>
+
+    <script src="js/library/Valida.js"></script>
+
+    <script src="js/paginas/PagMain.js"></script>
+    <script src="js/paginas/PagLogin.js"></script>
+    <script src="js/paginas/PagPagamento.js"></script>
+    <script src="js/paginas/PagConfirmarPagamento.js"></script>
+    <script src="js/paginas/PagAguardaPagamento.js"></script>
+    <script src="js/paginas/PagConcluirTransacao.js"></script>
+
+    <script type="text/javascript" src="js/frameworks/jquery.min.js"></script>
+    <script type="text/javascript" src="js/frameworks/modernizr.js"></script>
+    <script type="text/javascript" src="js/frameworks/timeline.js"></script>
+    <script type="text/javascript" src="js/frameworks/materialize.min.js"></script>
+    <script type="text/javascript" src="js/frameworks/materialize-tags.js"></script>
+    <script type="text/javascript" src="js/frameworks/tipehead.js"></script>
+
+    <script src="js/Banco.js"></script>
+
+    <script src="js/library/sha512.min.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
+    <script src="js/script.js"></script>
+</head>
+<!--ng-app="myApp" ng-controller="myCtrl"-->
+
+<body>
+    <header>
+        <nav id="navHeader" class="green darken-2">
+            <div class="nav-wrapper">
+                <div class="divLogo">
+                    <a id="tituloHeader" class="brand-logo center logo pointer" onclick="pagina.abrirPaginas('aguardaPagamento')"><img class="responsive-img" src="images/logo.png" style="height: 1em;" />
+                    </a>
+                </div>
+                <ul id="slide-out" class="side-nav">
+                    <li>
+                        <a href="#" class="row centralizacaoVertical" onclick="$('.button-collapse').sideNav('hide');pagina.abrirPaginas('aguardaPagamento');">
+                               Início
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="row centralizacaoVertical" onclick="$('.button-collapse').sideNav('hide');pagina.abrirPaginas('main');">
+                                Timeline
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="row centralizacaoVertical" onclick="$('.button-collapse').sideNav('hide');pagina.abrirPaginas('pagamento');">
+                                Pagamento
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="row centralizacaoVertical" onclick="$('.button-collapse').sideNav('hide');pagina.abrirPaginas('confirmarPagamento');">
+                               Confirmar Pagamento
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="row centralizacaoVertical" onclick="$('.button-collapse').sideNav('hide');pagina.abrirPaginas('concluirPagamento');">
+                               Concluir Pagamento
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#modalSobre" class="modal-trigger row centralizacaoVertical" onclick="$('.button-collapse').sideNav('hide');">
+                                Sobre
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="row centralizacaoVertical" onclick="$('.button-collapse').sideNav('hide');window.localStorage.removeItem('usuario');pagina.abrirPaginas('login');">        
+                                Sair
+                        </a>
+                    </li>
+                </ul>
+                <a href="#" data-activates="slide-out" class="button-collapse show-on-large right"><i class="mdi mdi-menu"></i></a>
+            </div>
+        </nav>
+    </header>
+    <div id="pagina"></div>
+    <!-- Modal Sobre -->
+    <div id="modalSobre" class="modal modal-fixed-footer modalFull">
+        <div class="modal-content">
+            <div class="row center">
+                <div class="col s12">
+                    <img class="circle responsive-img img" style="border-radius:0.5em" src="images/inopusLogo.png" />
+                </div>
+                <div class="col s12">
+                    <p class="tituloNome flow-text"><a href="http://inopus.com.br" target="_blank">Inopus</a></p>
+                    <p><i>Empresa de Desenvolvimento</i></p>
+                </div>
+            </div>
+            <div class="row center">
+                <div class="col s12">
+                    <span class="tituloDesenvolvedores">Equipe</span>
+                </div>
+            </div>
+            <div class="row center">
+                <div class="col s6">
+                    <img class="circle responsive-img img" src="images/equipe/guilherme.jpg" />
+                </div>
+                <div class="col s6">
+                    <img class="circle responsive-img img" src="images/equipe/gustavo.jpg" />
+                </div>
+            </div>
+            <div class="row center">
+                <div class="col s6">
+                    <p class="tituloNomeDesenvolvedor">Guilherme Uezima</p>
+                    <p class="funcaoDesenvolvedor"><i>Design</i></p>
+                </div>
+                <div class="col s6">
+                    <p class="tituloNomeDesenvolvedor">Gustavo Soré</p>
+                    <p class="funcaoDesenvolvedor"><i>Back-End</i></p>
+                </div>
+            </div>
+            <div class="row center">
+                <div class="col s6">
+                    <img class="circle responsive-img img" src="images/equipe/michel.jpg" />
+                </div>
+                <div class="col s6">
+                    <img class="circle responsive-img img" src="images/equipe/otavio.jpeg" />
+                </div>
+            </div>
+            <div class="row center">
+                <div class="col s6">
+                    <p class="tituloNomeDesenvolvedor">Michel Zarzour</p>
+                    <p class="funcaoDesenvolvedor"><i>Front-End</i></p>
+                </div>
+                <div class="col s6">
+                    <p class="tituloNomeDesenvolvedor">Otavio R. Rossi</p>
+                    <p class="funcaoDesenvolvedor"><i>Integração</i></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green blue-text btn-flat">Fechar</a>
+        </div>
+    </div>
+    <!-- Fim Modal Sobre -->
+
+    <!-- Modal Orçamento -->
+    <div id="modalOrcamento" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h5>Orçamento</h5>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="orcamentoInput" type="text" class="validate">
+                    <label for="orcamentoInput">Insira o valor em reais</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-light green-text btn-flat " onclick="pag.mostraOrcamento();">Enviar</a>
+            <a href="#modalMostraOrcamento" class="modal-action modal-close waves-effect waves-light blue-text btn-flat ">Fechar</a>
+        </div>
+    </div>
+    <!--Fim Modal Orçamento -->
+
+    <script src="js/frameworks/rating.js"></script>
+</body>
+
+</html>
